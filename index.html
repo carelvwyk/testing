@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Magic Gate 2000</title>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"></script>
     <style media="screen">
       .container {
         font-family: sans-serif;
@@ -27,8 +31,18 @@
   </head>
   <body>
     <div class="container">
-      <a class="button" href="https://2s8q0urqye.execute-api.eu-west-1.amazonaws.com/test2/gateController">Front Gate</a>
+      <a class="button" id="callFrontGate" href="https://2s8q0urqye.execute-api.eu-west-1.amazonaws.com/test2/gateController">Front Gate</a>
       <a class="button" href="#">Back Gate</a>
     </div>
+    <script type="text/javascript">
+      $("#callFrontGate").click(function(){
+        var label = $('#callFrontGate').text();
+        $(this).text('calling');
+        $.get('https://2s8q0urqye.execute-api.eu-west-1.amazonaws.com/test2/gateController', function() {
+          $(this).text(label);
+        });
+        return false;
+      });
+    </script>
   </body>
 </html>
